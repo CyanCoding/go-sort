@@ -1,6 +1,6 @@
 package gosort
 
-var alphabet = map[string]int {
+var alphabet = map[string]int{
 	"a": 1,
 	"b": 2,
 	"c": 3,
@@ -13,7 +13,7 @@ var alphabet = map[string]int {
 	"j": 10,
 	"k": 11,
 	"l": 12,
-	"n": 13,
+	"m": 13,
 	"n": 14,
 	"o": 15,
 	"p": 16,
@@ -30,5 +30,35 @@ var alphabet = map[string]int {
 }
 
 func SortString(word string) string {
+	var byteArray = []byte(word)
+
+	// If we sort the string at least once,
+	// we repeat the loop. If we go an entire
+	// loop without sorting it's alphabetical
+	var sorted = false
+
+	for {
+		for i := 1; i < len(byteArray); i++ {
+			// If the current char is lower in the alphabet than previous
+			if alphabet[string(byteArray[i])] <
+				alphabet[string(byteArray[i-1])] {
+
+				// Swap last char with current char and vice versa
+				char := byteArray[i-1]
+				byteArray[i-1] = byteArray[i]
+				byteArray[i] = char
+				sorted = true
+			}
+		}
+
+		if !sorted { // No sorts, so we're done!
+			break
+		} else {
+			sorted = false
+
+		}
+	}
+
+	return string(byteArray)
 
 }
