@@ -1,5 +1,7 @@
 package gosort
 
+import "fmt"
+
 var alphabet = map[string]int{
 	"a": 1,
 	"b": 2,
@@ -27,6 +29,20 @@ var alphabet = map[string]int{
 	"x": 24,
 	"y": 25,
 	"z": 26,
+}
+
+type SequenceKind int
+
+const (
+	Alphabetical SequenceKind = iota
+	ReverseAlphabetical
+	Reverse
+)
+
+var sequences = map[SequenceKind]int{
+	Alphabetical:        1,
+	ReverseAlphabetical: 2,
+	Reverse:             3,
 }
 
 func SortString(word string) string {
@@ -61,4 +77,8 @@ func SortString(word string) string {
 
 	return string(byteArray)
 
+}
+
+func Sort(word string, sort SequenceKind) {
+	fmt.Println(sequences[sort])
 }
